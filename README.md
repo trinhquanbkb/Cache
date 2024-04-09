@@ -35,6 +35,9 @@ $ npm install
 ## Running the app
 
 ```bash
+# run migrate
+$ npm run migration:run
+
 # development
 $ npm run start
 

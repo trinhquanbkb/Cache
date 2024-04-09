@@ -5,6 +5,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Orders } from './orders/entities/order.entity';
+import { CacheModule } from '@nestjs/cache-manager';
+
 import database from './config/database';
 
 @Module({
@@ -23,6 +25,10 @@ import database from './config/database';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
+    }),
+    CacheModule.register({
+      isGlobal: true,
+      ttl: 5000, // 5000 miliseconds
     }),
     OrdersModule,
   ],
